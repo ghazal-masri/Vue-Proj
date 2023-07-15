@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      body {
+        background: #eee;
+        max-width: 960px;
+        margin: 20px auto;
+      }
+      p,
+      h3,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background: #fff;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      li.fav {
+        background: #ff9ed2;
+        color: white;
+      }
+      .siz {
+        width: 200px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <a :href="url">go to the most wonderfull youtube channel!</a>
+      <div v-if="showBooks">
+        <ul>
+          <li
+            v-for="books in filterfav"
+            :class="{ fav: books.isFav }"
+            @dblclick="handlfav(books)"
+          >
+            <h3>{{books.author}}</h3>
+            <img :src="books.img" :alt="books.title" class="siz" />
+            <p>{{books.title}}</p>
+            <p>{{books.age}}</p>
+          </li>
+        </ul>
+
+        <!-- <h3>{{book[0].title}}|---| {{book[0].author}}|---| {{book[0].age}}</h3>
+        <button v-on:click="book[0].age++">increase age</button>
+        <div @click="changeTitle">Try me</div>
+        <div @click="changeName('orphi')">Change the name</div>-->
+      </div>
+      <button @click="toggleBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+      <div v-show="showBooks">currently showing</div>
+      <!-- <br />
+      <div class="hop" @mouseover="handleEvent($event, 5)">mousover(enter)</div>
+      <div class="hop" @mouseleave="handleEvent">mousleave</div>
+      <div class="hop" @dblclick="handleEvent">doubleclick</div>
+      <div class="hop" @mousemove="handlemousemove">
+        mousemove : POS --{{x}}---{{y}}--
+      </div>-->
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
